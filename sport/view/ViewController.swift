@@ -8,19 +8,22 @@
 
 import UIKit
 import SDWebImage
-class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate {
-    
+class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate ,SportsProtocol{
+   
     
     var sports:[Sports]=[]
     private let reuseIdentifier = "Cell"
+    let presenter = SportPresenter()
     
     override func viewDidLoad() {
            super.viewDidLoad()
-           collection.dataSource=self
-           collection.delegate=self
+    
+        presenter.attach(view: self)
+        collection.dataSource=self
+        collection.delegate=self
         
             self.collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-           down()
+        presenter.loadSports()
        }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -42,46 +45,21 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
 
 
     @IBOutlet weak var collection: UICollectionView!
-    
-   
 
     
-    
-  /*  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.25)
-    }*/
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        //return CGSize(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.25)
         return CGSize(width: 200, height: 175)
        }
     
-    
-    
-    
-    func down() {
-            let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/all_sports.php")
-                  let request = URLRequest(url: url!)
-                  let session = URLSession(configuration: .default)
-                  
-        let _: Void = session.dataTask(with: request) { (data, response, error) in
-    do{
-       
-        let ob = try JSONDecoder().decode(SportsArr.self, from: data!)
-        
-        DispatchQueue.main.async {
-         
-            self.sports=ob.sports ?? []
-            self.collection.reloadData()
-        }
 
-      
-                      }catch{
-                          print("error")
-                      }
-                  }.resume()
-                  
-        }
+    
+    func setSports(sportsArr: [Sports]) {
+        self.sports=sportsArr
+        self.collection.reloadData()
+       }
+       
 
 }
 
