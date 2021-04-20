@@ -20,20 +20,22 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     var reaultsArr:[Events]=[]
     var upComeArr:[Events]=[]
     var prsenter=DetialsPresenter()
-    
+    var sport:String!
+    var country:String!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        CResults.dataSource=self
         CResults.delegate=self
-        CTeams.dataSource=self
+        CResults.dataSource=self
         CTeams.delegate=self
-        CEvent.dataSource=self
+        CTeams.dataSource=self
         CEvent.delegate=self
+        CEvent.dataSource=self
+        
         prsenter.attach(view: self)
         prsenter.downResult()
         prsenter.downUpComing()
-        prsenter.downTeams()
+    prsenter.downTeams(country: country,sport: sport)
     }
     
 

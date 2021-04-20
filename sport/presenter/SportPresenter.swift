@@ -9,7 +9,7 @@
 import Foundation
 class SportPresenter {
     
-    var view:SportsProtocol! = nil
+    var view: SportsProtocol! = nil
     
     func attach(view:SportsProtocol) {
         self.view=view

@@ -18,9 +18,9 @@ class DetialsPresenter{
         
     }
     
-    func downTeams(){
+    func downTeams(country:String,sport:String){
          
-         let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=Soccer&c=england")
+         let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=\(sport)&c=\(country)")
                         let request = URLRequest(url: url!)
                         let session = URLSession(configuration: .default)
                         

@@ -42,6 +42,14 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
         return cell
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      
+        let num = collection.indexPathsForSelectedItems
+        if(segue.identifier=="showLeagues"){
+        let vc = segue.destination as! LeaguesViewController
+            vc.sport = sports[(num?[0].row)!].strSport
+        }
+    }
 
 
     @IBOutlet weak var collection: UICollectionView!

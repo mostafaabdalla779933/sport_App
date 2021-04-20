@@ -64,7 +64,7 @@
                                         <connections>
                                             <outlet property="img" destination="zhK-Aa-GzK" id="Pwy-md-tYW"/>
                                             <outlet property="txt" destination="PhU-Wx-wDJ" id="quw-AL-hjg"/>
-                                            <segue destination="aiQ-Mn-KwG" kind="show" id="3eO-KZ-xBD"/>
+                                            <segue destination="aiQ-Mn-KwG" kind="show" identifier="showLeagues" id="3eO-KZ-xBD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -82,26 +82,77 @@
             </objects>
             <point key="canvasLocation" x="2403" y="-768"/>
         </scene>
-        <!--View Controller-->
+        <!--Leagues-->
         <scene sceneID="TSh-Je-kWI">
             <objects>
-                <viewController id="aiQ-Mn-KwG" sceneMemberID="viewController">
+                <viewController id="aiQ-Mn-KwG" customClass="LeaguesViewController" customModule="sport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AIb-AX-jmc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tgV-uu-g7x">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customCell" rowHeight="339" id="VnP-y7-bLj" customClass="LeaguesTableViewCell" customModule="sport" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="339"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VnP-y7-bLj" id="WhH-Q6-J4U" customClass="LeaguesTableViewCell" customModule="sport" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="339"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQ4-w8-SQN">
+                                                    <rect key="frame" x="321" y="286" width="73" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Youtube">
+                                                        <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="League title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeJ-yv-8TP">
+                                                    <rect key="frame" x="37" y="286" width="215" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j45-Hx-dOa">
+                                                    <rect key="frame" x="127" y="89" width="160" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="leaguesImg" destination="j45-Hx-dOa" id="3jm-cG-2cl"/>
+                                            <outlet property="leaguesTitle" destination="MeJ-yv-8TP" id="kmZ-dG-Qp1"/>
+                                            <outlet property="leaguesYtubeBtn" destination="mQ4-w8-SQN" id="qLx-Oh-e3g"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tgV-uu-g7x" firstAttribute="top" secondItem="iCd-Zo-wWK" secondAttribute="top" id="2Z1-MU-Px9"/>
+                            <constraint firstItem="iCd-Zo-wWK" firstAttribute="trailing" secondItem="tgV-uu-g7x" secondAttribute="trailing" id="3gf-lK-Rqk"/>
+                            <constraint firstItem="iCd-Zo-wWK" firstAttribute="bottom" secondItem="tgV-uu-g7x" secondAttribute="bottom" id="hPs-yU-wAu"/>
+                            <constraint firstItem="tgV-uu-g7x" firstAttribute="leading" secondItem="iCd-Zo-wWK" secondAttribute="leading" id="scT-NR-O20"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="iCd-Zo-wWK"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lgo-vV-0Gw"/>
+                    <navigationItem key="navigationItem" title="Leagues" id="lgo-vV-0Gw"/>
+                    <connections>
+                        <outlet property="leaguesview" destination="tgV-uu-g7x" id="yBy-RQ-HgC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDy-VV-0sz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3287" y="-768"/>
+            <point key="canvasLocation" x="3385.507246376812" y="-768.08035714285711"/>
         </scene>
         <!--Leagues DetialsVC-->
         <scene sceneID="zl2-zs-qnS">
             <objects>
-                <viewController id="cIw-XA-0X6" customClass="LeaguesDetialsVC" customModule="sport" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeaguesDetial" id="cIw-XA-0X6" customClass="LeaguesDetialsVC" customModule="sport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="szD-a7-SC2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
