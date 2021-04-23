@@ -10,8 +10,19 @@ import UIKit
 
 class FavViewController: UIViewController {
 
+    var core=CoreDat()
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        
+        var data=core.get()
+        
+        
+        for i in data {
+          print(i.strLeague)
+        }
+        
+        
         
     }
     

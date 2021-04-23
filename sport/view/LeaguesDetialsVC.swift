@@ -16,13 +16,19 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     
     @IBOutlet weak var CTeams: UICollectionView!
     
+    
+    
     var teamsArr:[Teams]=[]
     var reaultsArr:[Events]=[]
     var upComeArr:[Events]=[]
     var prsenter=DetialsPresenter()
     var sport:String!
     var country:String!
+    var badge:String!
+    var youtube:String!
+    var league:String!
     var id :String!
+    var core:CoreDat!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +38,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         CTeams.dataSource=self
         CEvent.delegate=self
         CEvent.dataSource=self
-        
+        core=CoreDat()
 
         prsenter.downResult(id: id) { (results) in
             self.reaultsArr=results
@@ -49,7 +55,14 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         }
     }
 
+    
+    @IBAction func addFav(_ sender: Any) {
+        
+       let f=Favourit(idLeague: id, strBadge: badge, strSport: sport, strLeague: league, strYoutube: youtube)
 
+        core.add(country: f)
+    }
+    
     /*
     // MARK: - Navigation
 

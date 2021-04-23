@@ -57,8 +57,13 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         vc.modalPresentationStyle = .fullScreen
         vc.sport=countrys[indexPath.row].strSport
         vc.country=countrys[indexPath.row].strCountry
+        vc.badge=countrys[indexPath.row].strBadge
+        vc.youtube=countrys[indexPath.row].strYoutube
+        vc.league=countrys[indexPath.row].strLeague
         vc.id=countrys[indexPath.row].idLeague
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+
+        
     }
    
 

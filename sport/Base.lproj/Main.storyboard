@@ -19,7 +19,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PgS-jE-HoH">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pfc-F6-iZ0">
                                     <size key="itemSize" width="182" height="164"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -364,7 +364,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PY5-gG-9PW"/>
                     </view>
-                    <navigationItem key="navigationItem" id="uCu-Vl-CxW"/>
+                    <navigationItem key="navigationItem" id="uCu-Vl-CxW">
+                        <barButtonItem key="rightBarButtonItem" image="heart.fill" catalog="system" id="eMO-CH-b8e">
+                            <connections>
+                                <action selector="addFav:" destination="cIw-XA-0X6" id="XTf-lb-07a"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="CEvent" destination="mUN-NG-UOV" id="Vum-ZI-R0w"/>
                         <outlet property="CResults" destination="w75-zR-Pxu" id="i1e-qB-yc5"/>
@@ -462,10 +468,10 @@
             </objects>
             <point key="canvasLocation" x="273.91304347826087" y="-768.08035714285711"/>
         </scene>
-        <!--View Controller-->
+        <!--Fav View Controller-->
         <scene sceneID="YNp-GV-eVC">
             <objects>
-                <viewController id="Pzh-Dn-SNp" sceneMemberID="viewController">
+                <viewController id="Pzh-Dn-SNp" customClass="FavViewController" customModule="sport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hrd-5d-clw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -529,6 +535,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="sportscourt" catalog="system" width="128" height="83"/>
     </resources>
 </document>
