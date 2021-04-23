@@ -23,14 +23,21 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
         
        self.collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        presenter.loadSports { (sportsArr) in
+    
+        presenter.loadSports{ (sportsArr) in
+            
             self.sports=sportsArr
             self.collection.reloadData()
+            
         }
+ 
 
      }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+    
+        
         return sports.count
     }
     
@@ -58,6 +65,6 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //return CGSize(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.25)
         return CGSize(width: 200, height: 175)
-       }
+    }
 }
 

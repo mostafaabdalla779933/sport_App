@@ -10,8 +10,8 @@ import Foundation
 
 class DetialsPresenter{
 
-let network=NetworkManager()
-    
+let network = NetworkManager()
+let  core = CoreDat()
  func downTeams(country:String,sport:String,com :@escaping ([Teams]) -> Void){
     network.downTeams(country: country, sport: sport, com: com)
  }

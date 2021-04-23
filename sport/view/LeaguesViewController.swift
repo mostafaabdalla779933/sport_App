@@ -22,6 +22,10 @@ class LeaguesViewController: UIViewController {
         
         leaguesview.delegate = self
         leaguesview.dataSource = self
+        
+    
+        
+        
         presenter.loadLeagues(sport: sport) { (CountrysArr) in
              self.countrys = CountrysArr
              self.leaguesview.reloadData()

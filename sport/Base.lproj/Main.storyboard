@@ -252,19 +252,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7V8-Kw-fes">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7V8-Kw-fes">
                                                     <rect key="frame" x="0.0" y="0.0" width="206" height="200"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="m8V-wn-Q5W"/>
-                                                    </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="7V8-Kw-fes" firstAttribute="leading" secondItem="BYF-Q8-Pwd" secondAttribute="leading" id="937-mk-0RV"/>
-                                                <constraint firstItem="7V8-Kw-fes" firstAttribute="top" secondItem="BYF-Q8-Pwd" secondAttribute="top" id="PZM-M6-Shz"/>
-                                                <constraint firstAttribute="trailing" secondItem="7V8-Kw-fes" secondAttribute="trailing" id="Saq-KH-bBv"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="206" height="242"/>
                                         <connections>

@@ -64,9 +64,7 @@ class NetworkManager {
     
     
     
-    func loadLeagues(sport : String ,com :@escaping ([Countrys]) -> Void) {
-        
-      
+func loadLeagues(sport : String ,com :@escaping ([Countrys]) -> Void) {
         
        let str = sport.replacingOccurrences(of: " ", with: "_")
 

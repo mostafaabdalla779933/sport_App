@@ -10,7 +10,8 @@ import Foundation
 class SportPresenter {
     
     let network=NetworkManager()
-    func loadSports(com :@escaping ([Sports]) -> Void) {
-        network.loadSports(com: com)
+
+    func loadSports(com : @escaping (([Sports])-> Void)){
+        network.loadSports(com : com)
     }
 }

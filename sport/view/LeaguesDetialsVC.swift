@@ -29,6 +29,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     var league:String!
     var id :String!
     var core:CoreDat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,8 +39,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         CTeams.dataSource=self
         CEvent.delegate=self
         CEvent.dataSource=self
-        core=CoreDat()
-
+        core = CoreDat()
         prsenter.downResult(id: id) { (results) in
             self.reaultsArr=results
             self.CResults.reloadData()
@@ -59,7 +59,6 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     @IBAction func addFav(_ sender: Any) {
         
        let f=Favourit(idLeague: id, strBadge: badge, strSport: sport, strLeague: league, strYoutube: youtube)
-
         core.add(country: f)
     }
     
@@ -106,6 +105,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tCell", for: indexPath) as! TeamCell
             cell.txt.text=teamsArr[indexPath.row].strTeam
             cell.img.sd_setImage(with: URL(string: teamsArr[indexPath.row].strTeamBadge ?? ""), placeholderImage: UIImage(named: "a.png"))
+    
         
         cell.img.contentMode = .scaleAspectFit
         cell.img.layer.borderWidth = 1.0
@@ -113,7 +113,9 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         cell.img.layer.borderColor = UIColor.white.cgColor
         cell.img.layer.cornerRadius = cell.img.frame.size.width / 2
         cell.img.clipsToBounds = true
-                       
+       
+        
+        
                    return cell
             
         }else{

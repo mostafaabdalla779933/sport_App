@@ -183,6 +183,7 @@
 				7FBFE4A2262CD68C009825A3 /* view */,
 				7FBFE4A1262CD680009825A3 /* presenter */,
 				7F98A9E1262C581A0000FF00 /* models */,
+				7F90F271263325FC00215AF9 /* service */,
 				7F42BB6D262B7385008BCE37 /* AppDelegate.swift */,
 				7F42BB6F262B7385008BCE37 /* SceneDelegate.swift */,
 				7F42BB73262B7385008BCE37 /* Main.storyboard */,
@@ -190,8 +191,6 @@
 				7F42BB7B262B738A008BCE37 /* LaunchScreen.storyboard */,
 				7F42BB7E262B738A008BCE37 /* Info.plist */,
 				7F42BB76262B7385008BCE37 /* sport.xcdatamodeld */,
-				7F33D43F263081D000B715B3 /* NetworkManager.swift */,
-				7F90F26D26330C5500215AF9 /* CoreDat.swift */,
 			);
 			path = sport;
 			sourceTree = "<group>";
@@ -212,6 +211,15 @@
 				7F42BB94262B738B008BCE37 /* Info.plist */,
 			);
 			path = sportUITests;
+			sourceTree = "<group>";
+		};
+		7F90F271263325FC00215AF9 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				7F33D43F263081D000B715B3 /* NetworkManager.swift */,
+				7F90F26D26330C5500215AF9 /* CoreDat.swift */,
+			);
+			path = service;
 			sourceTree = "<group>";
 		};
 		7F98A9E1262C581A0000FF00 /* models */ = {

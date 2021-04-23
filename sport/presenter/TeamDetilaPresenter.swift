@@ -13,6 +13,9 @@ class TeamDetilaPresenter {
 
     var network=NetworkManager()
     
+    
+    
+    
     func downTeam(id:String,com : @escaping (Teams) -> Void ){
         network.downTeam(id: id, com: com)
     }

@@ -21,9 +21,13 @@ class TeamDetialsVC: UIViewController {
     @IBOutlet weak var sImg: UIImageView!
     
     var idStr:String!
+    
+    
     let presenter=TeamDetilaPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        
         presenter.downTeam(id: idStr) { (team) in
             self.name.text = team.strTeam
             self.sImg.sd_setImage(with: URL(string: (team.strStadiumThumb) ?? ""), placeholderImage: UIImage(named: "a.png"))
