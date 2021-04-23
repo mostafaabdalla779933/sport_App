@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate,DetialsProtocol  {
+class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate {
     
     @IBOutlet weak var CEvent: UICollectionView!
     
@@ -22,6 +22,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     var prsenter=DetialsPresenter()
     var sport:String!
     var country:String!
+    var id :String!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,12 +33,22 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         CEvent.delegate=self
         CEvent.dataSource=self
         
-        prsenter.attach(view: self)
-        prsenter.downResult()
-        prsenter.downUpComing()
-    prsenter.downTeams(country: country,sport: sport)
+
+        prsenter.downResult(id: id) { (results) in
+            self.reaultsArr=results
+            self.CResults.reloadData()
+        }
+        prsenter.downUpComing (id :id){ (events) in
+            self.upComeArr=events
+            self.CEvent.reloadData()
+        }
+       
+        prsenter.downTeams(country: country, sport: sport) { (teams) in
+            self.teamsArr=teams
+            self.CTeams.reloadData()
+        }
     }
-    
+
 
     /*
     // MARK: - Navigation
@@ -141,20 +152,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     }
     
     
-   func setTeams(teams: [Teams]) {
-    self.teamsArr=teams
-    self.CTeams.reloadData()
-   }
-   
-   func setEvents(events: [Events]) {
-    self.upComeArr=events
-    self.CEvent.reloadData()
-   }
-   
-   func setResults(results: [Events]) {
-    self.reaultsArr=results
-    self.CResults.reloadData()
-   }
+
 
        
 }

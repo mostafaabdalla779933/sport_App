@@ -9,102 +9,20 @@
 import Foundation
 
 class DetialsPresenter{
-    
-    var view:DetialsProtocol!
-    
-    func attach(view:DetialsProtocol){
-        
-        self.view=view
-        
-    }
-    
-    func downTeams(country:String,sport:String){
-         
-         let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=\(sport)&c=\(country)")
-                        let request = URLRequest(url: url!)
-                        let session = URLSession(configuration: .default)
-                        
-              let _: Void = session.dataTask(with: request) { (data, response, error) in
-          do{
-             
-              let ob = try JSONDecoder().decode(TeamsArr.self, from: data!)
-              
-              DispatchQueue.main.async {
-               
-                self.view.setTeams(teams: ob.teams ?? [])
-             
-                  
-                  
-              }
 
-            
-                            }catch{
-                                print("error")
-                            }
-                        }.resume()
-         
-         
-         
-         
-         
-     }
-     
-     
-     
-     func downResult(){
-         
-         let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328")
-                        let request = URLRequest(url: url!)
-                        let session = URLSession(configuration: .default)
-                        
-              let _: Void = session.dataTask(with: request) { (data, response, error) in
-          do{
-             
-              let ob = try JSONDecoder().decode(EventsArr.self, from: data!)
-              
-              DispatchQueue.main.async {
-               
-                self.view.setResults(results: ob.events ?? [] )
-                 // self.view.setSports(sportsArr: ob.sports!)
-                  
-                  
-              }
-
-            
-                            }catch{
-                                print("error")
-                            }
-                        }.resume()
+let network=NetworkManager()
     
-     }
-     
+ func downTeams(country:String,sport:String,com :@escaping ([Teams]) -> Void){
+    network.downTeams(country: country, sport: sport, com: com)
+ }
 
-     func downUpComing(){
-            
-            let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/eventsround.php?id=4328&r=33&s=2020-2021")
-                           let request = URLRequest(url: url!)
-                           let session = URLSession(configuration: .default)
-                           
-                 let _: Void = session.dataTask(with: request) { (data, response, error) in
-             do{
-                
-                 let ob = try JSONDecoder().decode(EventsArr.self, from: data!)
-                 
-                 DispatchQueue.main.async {
-                  
-                    self.view.setEvents(events: ob.events ?? [])
-                    // self.view.setSports(sportsArr: ob.sports!)
-                     
-                     
-                 }
+ func downResult(id:String,com :@escaping ([Events]) -> Void){
+    network.downResult(id: id, com: com)
 
-               
-                               }catch{
-                                   print("error")
-                               }
-                           }.resume()
-       
-        }
+ }
     
+ func downUpComing(id:String,com :@escaping ([Events]) -> Void){
+    network.downUpComing(id: id, com: com)
+ }
     
 }

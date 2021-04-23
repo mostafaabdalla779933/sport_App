@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeamDetialsVC: UIViewController ,TeamDetialProtocol {
+class TeamDetialsVC: UIViewController {
    
     
 
@@ -24,21 +24,19 @@ class TeamDetialsVC: UIViewController ,TeamDetialProtocol {
     let presenter=TeamDetilaPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.downTeam(id: idStr) { (team) in
+            self.name.text = team.strTeam
+            self.sImg.sd_setImage(with: URL(string: (team.strStadiumThumb) ?? ""), placeholderImage: UIImage(named: "a.png"))
+            self.logo.sd_setImage(with: URL(string: (team.strTeamBadge) ?? ""), placeholderImage: UIImage(named: "a.png"))
+             self.sName.text = team.strStadium
+        }
 
-        presenter.attach(view: self)
-        presenter.downTeam(id: idStr)
-        
-    //    let image = UIImage(named: "imageName")
-        
         sImg.contentMode = .scaleAspectFill
         sImg.layer.borderWidth = 1.0
         sImg.layer.masksToBounds = false
         sImg.layer.borderColor = UIColor.white.cgColor
         sImg.layer.cornerRadius = sImg.frame.size.width / 2
         sImg.clipsToBounds = true
-        
-       
-        
     }
     
 
@@ -51,16 +49,5 @@ class TeamDetialsVC: UIViewController ,TeamDetialProtocol {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    
-    
-     
 
-    
-    func setTeams(teams: Teams) {
-        self.name.text = teams.strTeam
-        self.sImg.sd_setImage(with: URL(string: (teams.strStadiumThumb) ?? ""), placeholderImage: UIImage(named: "a.png"))
-        self.logo.sd_setImage(with: URL(string: (teams.strTeamBadge) ?? ""), placeholderImage: UIImage(named: "a.png"))
-        self.sName.text = teams.strStadium
-    }
 }

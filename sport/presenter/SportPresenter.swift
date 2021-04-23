@@ -9,37 +9,8 @@
 import Foundation
 class SportPresenter {
     
-    var view: SportsProtocol! = nil
-    
-    func attach(view:SportsProtocol) {
-        self.view=view
+    let network=NetworkManager()
+    func loadSports(com :@escaping ([Sports]) -> Void) {
+        network.loadSports(com: com)
     }
-    
-   
-    
-    func loadSports() {
-            let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/all_sports.php")
-                  let request = URLRequest(url: url!)
-                  let session = URLSession(configuration: .default)
-                  
-        let _: Void = session.dataTask(with: request) { (data, response, error) in
-    do{
-       
-        let ob = try JSONDecoder().decode(SportsArr.self, from: data!)
-        
-        DispatchQueue.main.async {
-         
-            self.view.setSports(sportsArr: ob.sports!)
-            
-            
-        }
-
-      
-                      }catch{
-                          print("error")
-                      }
-                  }.resume()
-                  
-        }
-    
 }

@@ -8,16 +8,10 @@
 
 import UIKit
 
-class LeaguesViewController: UIViewController, LeaguesProtocol {
-  
-    func setLeagues(CountrysArr: [Countrys]) {
-         self.countrys = CountrysArr
-         self.leaguesview.reloadData()
-    }
+class LeaguesViewController: UIViewController {
     
 
     @IBOutlet weak var leaguesview: UITableView!
-   // let leagues = ["Ah","zam","Rl","Le"]
     var countrys:[Countrys]=[]
     let presenter = LeaguesPresenter()
     var sport :String!
@@ -25,10 +19,13 @@ class LeaguesViewController: UIViewController, LeaguesProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.attach(view: self)
+        
         leaguesview.delegate = self
         leaguesview.dataSource = self
-        presenter.loadLeagues(sport: sport)
+        presenter.loadLeagues(sport: sport) { (CountrysArr) in
+             self.countrys = CountrysArr
+             self.leaguesview.reloadData()
+        }
     }
     
 
@@ -50,7 +47,6 @@ class LeaguesViewController: UIViewController, LeaguesProtocol {
 
 
 // MARK: -Extension
-
 extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,17 +57,11 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         vc.modalPresentationStyle = .fullScreen
         vc.sport=countrys[indexPath.row].strSport
         vc.country=countrys[indexPath.row].strCountry
-        
+        vc.id=countrys[indexPath.row].idLeague
         self.present(vc, animated: true, completion: nil)
     }
    
-   /* func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.row)
-    }*/
-    
 
-    
-    
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 340
     }
@@ -82,9 +72,8 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //create cell
         let cell = leaguesview.dequeueReusableCell(withIdentifier: "customCell") as! LeaguesTableViewCell
-       //cell.leaguesImg.layer.cornerRadius = cell.leaguesImg.frame.size.width/2.0
+
        
         cell.leaguesImg.layer.borderWidth = 1.0
         cell.leaguesImg.layer.masksToBounds = false
@@ -94,11 +83,9 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         
          cell.leaguesImg.contentMode = .scaleAspectFit
         cell.leaguesTitle.text = countrys[indexPath.row].strLeague
+        print(countrys[indexPath.row].idLeague)
         cell.leaguesImg.sd_setImage(with: URL(string: countrys[indexPath.row].strBadge ?? ""), placeholderImage: UIImage(named: "exo.png"))
-        
-        //   cell.leaguesImg.image = UIImage(named: "exo.png")
-        // cell.leaguesTitle.text = leage
-        
+
         return cell
     }
     

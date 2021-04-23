@@ -8,7 +8,7 @@
 
 import UIKit
 import SDWebImage
-class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate ,SportsProtocol{
+class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,UICollectionViewDelegate {
    
     
     var sports:[Sports]=[]
@@ -17,15 +17,19 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
     
     override func viewDidLoad() {
            super.viewDidLoad()
-    
-        presenter.attach(view: self)
+        
         collection.dataSource=self
         collection.delegate=self
         
-            self.collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        presenter.loadSports()
-       }
-    
+       self.collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        presenter.loadSports { (sportsArr) in
+            self.sports=sportsArr
+            self.collection.reloadData()
+        }
+
+     }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sports.count
     }
@@ -50,24 +54,10 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
             vc.sport = sports[(num?[0].row)!].strSport
         }
     }
-
-
     @IBOutlet weak var collection: UICollectionView!
-
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         //return CGSize(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.25)
         return CGSize(width: 200, height: 175)
        }
-    
-
-    
-    func setSports(sportsArr: [Sports]) {
-        self.sports=sportsArr
-        self.collection.reloadData()
-       }
-       
-
 }
 

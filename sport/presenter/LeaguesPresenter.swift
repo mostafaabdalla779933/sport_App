@@ -9,35 +9,10 @@
 import Foundation
 class LeaguesPresenter {
     
-    var view:LeaguesProtocol! = nil
-    
-    func attach(view:LeaguesProtocol) {
-        self.view = view
-    }
+    var network=NetworkManager()
 
-    func loadLeagues(sport : String) {
-        
-      
-        
-       let str = sport.replacingOccurrences(of: " ", with: "_")
-
-       let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=\(str)")
-                  let request = URLRequest(url: url!)
-                  let session = URLSession(configuration: .default)
-                  
-        let _: Void = session.dataTask(with: request) { (data, response, error) in
-    do{
-        let ob = try JSONDecoder().decode(CountrysArr.self, from: data!)
-        DispatchQueue.main.async {
-           self.view.setLeagues(CountrysArr: ob.countrys!)
-            print(ob.countrys!.count)
-        }
-        }
-    catch{  print(error.localizedDescription)  }
-        }.resume()
-        
-        
+    func loadLeagues(sport : String,com :@escaping ([Countrys]) -> Void){
+        network.loadLeagues(sport: sport, com: com)
     }
-    
 }
         
