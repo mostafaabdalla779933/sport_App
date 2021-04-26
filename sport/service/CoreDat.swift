@@ -26,7 +26,7 @@ class CoreDat{
         count.setValue(country.strYoutube, forKey: "strYoutube")
         count.setValue(country.strLeague, forKey: "strLeague")
         count.setValue(country.strSport, forKey: "strSport")
-
+        count.setValue(country.country, forKey: "country")
        
        do{
            
@@ -58,7 +58,7 @@ func get()-> [Favourit]{
                for i in favs {
 
                 
-                let fav=Favourit(idLeague: i.value(forKey: "idLeague") as! String, strBadge: i.value(forKey: "strBadge") as! String, strSport: i.value(forKey: "strSport") as! String, strLeague: i.value(forKey: "strLeague") as! String, strYoutube: i.value(forKey: "strYoutube") as! String)
+                let fav=Favourit(idLeague: i.value(forKey: "idLeague") as! String, strBadge: i.value(forKey: "strBadge") as! String, strSport: i.value(forKey: "strSport") as! String, strLeague: i.value(forKey: "strLeague") as! String, strYoutube: i.value(forKey: "strYoutube") as! String,country: i.value(forKey: "country") as! String)
                    
                   arr.append(fav)
                   

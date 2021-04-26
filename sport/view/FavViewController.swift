@@ -20,22 +20,20 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
       
         
-        var data=core.get()
+        
         table.delegate = self
         table.dataSource = self
         
-        fav = data
-        table.reloadData()
-        for i in data {
-          print(i.strLeague)
-        }
-        
-        
-        
+
     }
     
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var data=core.get()
+        fav = data
+        table.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fav.count
@@ -45,6 +43,9 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
         let cell = table.dequeueReusableCell(withIdentifier: "Fcell") as? FavTableViewCell
 
         cell?.favTitle.text = fav[indexPath.row].strLeague
+    
+        cell?.strYoutube = fav[indexPath.row].strYoutube
+        cell?.favYT(fav[indexPath.row].strYoutube)
         cell?.favimg.sd_setImage(with: URL(string: fav[indexPath.row].strBadge ), placeholderImage: UIImage(named: "exo.png"))
         return cell!
     }
@@ -65,6 +66,8 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
               print(indexPath.row)
              
@@ -72,12 +75,12 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
              
              vc.modalPresentationStyle = .fullScreen
              vc.sport=fav[indexPath.row].strSport
-             vc.country = "England"
+             vc.country = fav[indexPath.row].country
              vc.badge=fav[indexPath.row].strBadge
              vc.youtube=fav[indexPath.row].strYoutube
              vc.league=fav[indexPath.row].strLeague
              vc.id=fav[indexPath.row].idLeague
              self.navigationController?.pushViewController(vc, animated: true)
-         }
+      }
 
 }

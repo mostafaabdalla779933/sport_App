@@ -46,6 +46,19 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cCell", for: indexPath) as! CollectionCell
         cell.txt.text=sports[indexPath.row].strSport
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.borderWidth = 1.0
+
+        cell.contentView.layer.borderColor = UIColor.white.cgColor
+        cell.contentView.layer.masksToBounds = true
+
+        cell.layer.shadowColor = UIColor.white.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+        
         
        
         cell.img.sd_setImage(with: URL(string: sports[indexPath.row].strSportThumb ?? ""), placeholderImage: UIImage(named: "a.png"))
@@ -64,7 +77,7 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var collection: UICollectionView!
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //return CGSize(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.25)
-        return CGSize(width: 200, height: 175)
+        return CGSize(width: UIScreen.main.bounds.width / 2 - 10, height: 175)
     }
 }
 

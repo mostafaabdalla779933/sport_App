@@ -14,16 +14,16 @@ class Favourit{
     var strSport:String=""
     var strLeague:String=""
     var strYoutube:String=""
+    var country:String=""
     
-    
- init(idLeague:String,strBadge:String,strSport:String,strLeague:String,strYoutube:String){
+    init(idLeague:String,strBadge:String,strSport:String,strLeague:String,strYoutube:String,country:String){
         
         self.idLeague = idLeague
         self.strSport = strSport
         self.strBadge = strBadge
         self.strYoutube = strYoutube
         self.strLeague = strLeague
-        
+        self.country = country
     }
     
 }

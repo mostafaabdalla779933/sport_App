@@ -58,7 +58,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     
     @IBAction func addFav(_ sender: Any) {
         
-       let f=Favourit(idLeague: id, strBadge: badge, strSport: sport, strLeague: league, strYoutube: youtube)
+       let f=Favourit(idLeague: id, strBadge: badge, strSport: sport, strLeague: league, strYoutube: youtube,country: country)
         core.add(country: f)
     }
     
@@ -97,6 +97,18 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         cell.away.text = upComeArr[indexPath.row].strAwayTeam
         cell.date.text=upComeArr[indexPath.row].dateEvent
         cell.time.text=upComeArr[indexPath.row].strTime
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.borderWidth = 1.0
+
+        cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        cell.contentView.layer.masksToBounds = true
+
+        cell.layer.shadowColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
 
                        
                    return cell
@@ -126,6 +138,26 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             cell.result.text = "\(reaultsArr[indexPath.row].intHomeScore?.description ?? "0")-\(reaultsArr[indexPath.row].intAwayScore?.description ?? "0")"
             cell.Date.text=reaultsArr[indexPath.row].dateEvent
             cell.time.text=reaultsArr[indexPath.row].strTime
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.borderWidth = 1.0
+
+        
+        
+       /* #3b5998
+        #8b9dc3
+        #dfe3ee
+        #f7f7f7
+        #ffffff*/
+        cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#3b5998").cgColor
+            
+        cell.contentView.layer.masksToBounds = true
+
+        cell.layer.shadowColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
                   
                        
                    return cell
@@ -140,13 +172,13 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         
         
         if collectionView == self.CEvent {
-           return CGSize(width: 400, height: 125)
+            return CGSize(width:  UIScreen.main.bounds.width - 5, height: self.CEvent.bounds.height - 5)
         }else if collectionView == self.CTeams {
-            return CGSize(width: 206, height: 242)
+            return CGSize(width:  (UIScreen.main.bounds.width / 2) - 5, height: self.CTeams.bounds.height - 5)
             
         }else{
             
-          return CGSize(width: 400, height: 160)
+          return CGSize(width:  UIScreen.main.bounds.width - 5, height: self.CResults.bounds.height - 5)
             
             
         }
@@ -168,6 +200,26 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     
     
 
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
        
 }

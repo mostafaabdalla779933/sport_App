@@ -10,9 +10,14 @@ import UIKit
 
 class FavTableViewCell: UITableViewCell {
 
+    
+    var strYoutube:String!
+    
     @IBOutlet weak var favimg: UIImageView!
     
     @IBAction func favYT(_ sender: Any) {
+        //print()
+        UIApplication.shared.openURL(NSURL(string: sender as! String)! as URL)
     }
     
     @IBOutlet weak var favTitle: UILabel!
