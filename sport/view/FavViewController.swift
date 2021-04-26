@@ -7,17 +7,25 @@
 //
 
 import UIKit
+import SDWebImage
 
-class FavViewController: UIViewController {
-
+class FavViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
+    
+    var fav:[Favourit] = []
+    
+    @IBOutlet weak var table: UITableView!
+    
     var core=CoreDat()
     override func viewDidLoad() {
         super.viewDidLoad()
       
         
         var data=core.get()
+        table.delegate = self
+        table.dataSource = self
         
-        
+        fav = data
+        table.reloadData()
         for i in data {
           print(i.strLeague)
         }
@@ -27,6 +35,27 @@ class FavViewController: UIViewController {
     }
     
 
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fav.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = table.dequeueReusableCell(withIdentifier: "Fcell") as? FavTableViewCell
+
+        cell?.favTitle.text = fav[indexPath.row].strLeague
+        cell?.favimg.sd_setImage(with: URL(string: fav[indexPath.row].strBadge ), placeholderImage: UIImage(named: "exo.png"))
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+          return 340
+      }
+   
+    
+
+    
     /*
     // MARK: - Navigation
 
@@ -36,5 +65,19 @@ class FavViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+              print(indexPath.row)
+             
+             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesDetial") as! LeaguesDetialsVC
+             
+             vc.modalPresentationStyle = .fullScreen
+             vc.sport=fav[indexPath.row].strSport
+             vc.country = "England"
+             vc.badge=fav[indexPath.row].strBadge
+             vc.youtube=fav[indexPath.row].strYoutube
+             vc.league=fav[indexPath.row].strLeague
+             vc.id=fav[indexPath.row].idLeague
+             self.navigationController?.pushViewController(vc, animated: true)
+         }
 
 }
