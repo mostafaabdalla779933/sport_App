@@ -35,11 +35,9 @@ class LeaguesViewController: UIViewController {
 
     
        
-      
-
-    /*
+    
     // MARK: - Navigation
-
+/*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -87,7 +85,8 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         cell.leaguesImg.layer.borderWidth = 1.0
         cell.leaguesImg.layer.masksToBounds = false
         cell.leaguesImg.layer.borderColor = UIColor.white.cgColor
-        cell.leaguesImg.layer.cornerRadius = cell.leaguesImg.frame.size.width / 2
+        cell.leaguesImg.layer.cornerRadius =
+            cell.leaguesImg.frame.size.width / 2
         cell.leaguesImg.clipsToBounds = true
         
          cell.leaguesImg.contentMode = .scaleAspectFit
@@ -95,7 +94,7 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.strYoutube = countrys[indexPath.row].strYoutube
         cell.leaguesTitle.text = countrys[indexPath.row].strLeague
-        print(countrys[indexPath.row].idLeague)
+        print(countrys[indexPath.row].idLeague as Any)
         cell.leaguesImg.sd_setImage(with: URL(string: countrys[indexPath.row].strBadge ?? ""), placeholderImage: UIImage(named: "exo.png"))
 
         return cell

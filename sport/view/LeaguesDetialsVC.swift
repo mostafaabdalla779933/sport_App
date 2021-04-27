@@ -97,8 +97,8 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         cell.away.text = upComeArr[indexPath.row].strAwayTeam
         cell.date.text=upComeArr[indexPath.row].dateEvent
         cell.time.text=upComeArr[indexPath.row].strTime
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.cornerRadius = 40
+        cell.contentView.layer.borderWidth = 5.0
 
         cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#3b5998").cgColor
         cell.contentView.layer.masksToBounds = true
@@ -109,9 +109,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
-
-                       
-                   return cell
+        return cell
         }else if collectionView == self.CTeams {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tCell", for: indexPath) as! TeamCell
@@ -138,8 +136,8 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             cell.result.text = "\(reaultsArr[indexPath.row].intHomeScore?.description ?? "0")-\(reaultsArr[indexPath.row].intAwayScore?.description ?? "0")"
             cell.Date.text=reaultsArr[indexPath.row].dateEvent
             cell.time.text=reaultsArr[indexPath.row].strTime
-        cell.contentView.layer.cornerRadius = 10
-        cell.contentView.layer.borderWidth = 1.0
+            cell.contentView.layer.cornerRadius = 45
+            cell.contentView.layer.borderWidth = 5.0
 
         
         
@@ -148,19 +146,18 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         #dfe3ee
         #f7f7f7
         #ffffff*/
-        cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#dfe3ee").cgColor
             
         cell.contentView.layer.masksToBounds = true
 
-        cell.layer.shadowColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        cell.layer.shadowColor = hexStringToUIColor(hex: "#dfe3ee").cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         cell.layer.shadowRadius = 2.0
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
-                  
-                       
-                   return cell
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds,
+                    cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+          return cell
         }
     
     }
@@ -172,13 +169,13 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         
         
         if collectionView == self.CEvent {
-            return CGSize(width:  UIScreen.main.bounds.width - 5, height: self.CEvent.bounds.height - 5)
+            return CGSize(width:  UIScreen.main.bounds.width - 50, height: self.CEvent.bounds.height - 5)
         }else if collectionView == self.CTeams {
             return CGSize(width:  (UIScreen.main.bounds.width / 2) - 5, height: self.CTeams.bounds.height - 5)
             
         }else{
             
-          return CGSize(width:  UIScreen.main.bounds.width - 5, height: self.CResults.bounds.height - 5)
+          return CGSize(width:  UIScreen.main.bounds.width - 50, height: self.CResults.bounds.height - 5)
             
             
         }

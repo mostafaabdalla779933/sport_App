@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03685BD02638A486004B673C /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03685BCF2638A486004B673C /* NetworkMonitor.swift */; };
 		03B09FC3262E73C700612B26 /* LeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B09FC2262E73C700612B26 /* LeaguesViewController.swift */; };
 		03B09FC5262E794100612B26 /* LeaguesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B09FC4262E794100612B26 /* LeaguesTableViewCell.swift */; };
 		03B09FC7262E8B5300612B26 /* LeaguesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B09FC6262E8B5300612B26 /* LeaguesProtocol.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03685BCF2638A486004B673C /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		03B09FC2262E73C700612B26 /* LeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesViewController.swift; sourceTree = "<group>"; };
 		03B09FC4262E794100612B26 /* LeaguesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesTableViewCell.swift; sourceTree = "<group>"; };
 		03B09FC6262E8B5300612B26 /* LeaguesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesProtocol.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				7F33D43F263081D000B715B3 /* NetworkManager.swift */,
 				7F90F26D26330C5500215AF9 /* CoreDat.swift */,
+				03685BCF2638A486004B673C /* NetworkMonitor.swift */,
 			);
 			path = service;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				03B09FC7262E8B5300612B26 /* LeaguesProtocol.swift in Sources */,
 				7FBFE4A4262CDA78009825A3 /* SportPresenter.swift in Sources */,
 				7F90F270263312BE00215AF9 /* Favourit.swift in Sources */,
+				03685BD02638A486004B673C /* NetworkMonitor.swift in Sources */,
 				7F42BB70262B7385008BCE37 /* SceneDelegate.swift in Sources */,
 				03B09FC9262E904300612B26 /* LeaguesPresenter.swift in Sources */,
 			);
