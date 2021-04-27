@@ -9,28 +9,39 @@
 import UIKit
 
 class FavTableViewCell: UITableViewCell {
-
-    
     var strYoutube:String!
-    
     @IBOutlet weak var favimg: UIImageView!
-    
     @IBAction func favYT(_ sender: Any) {
-        //print()
-        UIApplication.shared.openURL(NSURL(string: sender as! String)! as URL)
+       // print(strYoutube)
+       //  UIApplication.shared.openURL(NSURL(string: strYoutube!)! as URL)
+        print("http://\(strYoutube!)")
+        
+        if let url = URL(string: "http://\(strYoutube ?? "www.youtube.com")") {
+            if #available(iOS 10, *){
+                UIApplication.shared.open(url,completionHandler: {sucss in
+                    if sucss {
+                        print("success")
+                    }else{
+                        print("faild")
+                    }
+                })
+            }else{
+                UIApplication.shared.openURL(url)
+            }
+        }else{
+            print("not valid")
+        }
+
+       // UIApplication.shared.openURL(NSURL(string: strYoutube ?? "www.youtube.com/channel/UCJmCVoUfCBQb9lcfXIS8nXQ" )! as URL)
     }
-    
     @IBOutlet weak var favTitle: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+       
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
-
 }

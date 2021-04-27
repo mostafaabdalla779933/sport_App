@@ -10,8 +10,35 @@ import UIKit
 
 class LeaguesTableViewCell: UITableViewCell {
 
+    
+    
+    var strYoutube:String!
     @IBOutlet weak var leaguesImg: UIImageView!
-    @IBOutlet weak var leaguesYtubeBtn: UIButton!
+    
+    @IBAction func btnYtube(_ sender: Any) {
+        
+       print("http://\(strYoutube!)")
+        
+        if let url = URL(string: "http://\(strYoutube ?? "www.youtube.com")") {
+            if #available(iOS 10, *){
+                UIApplication.shared.open(url,completionHandler: {sucss in
+                    if sucss {
+                        print("success")
+                    }else{
+                        print("faild")
+                    }
+                })
+            }else{
+                UIApplication.shared.openURL(url)
+            }
+        }else{
+            print("not valid")
+        }
+        
+        
+        
+    }
+    
     @IBOutlet weak var leaguesTitle: UILabel!
     
     

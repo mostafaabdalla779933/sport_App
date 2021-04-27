@@ -45,7 +45,7 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
         cell?.favTitle.text = fav[indexPath.row].strLeague
     
         cell?.strYoutube = fav[indexPath.row].strYoutube
-        cell?.favYT(fav[indexPath.row].strYoutube)
+        print(fav[indexPath.row].strYoutube)
         cell?.favimg.sd_setImage(with: URL(string: fav[indexPath.row].strBadge ), placeholderImage: UIImage(named: "exo.png"))
         return cell!
     }

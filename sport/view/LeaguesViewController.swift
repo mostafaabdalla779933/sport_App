@@ -91,6 +91,9 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         cell.leaguesImg.clipsToBounds = true
         
          cell.leaguesImg.contentMode = .scaleAspectFit
+        
+        
+        cell.strYoutube = countrys[indexPath.row].strYoutube
         cell.leaguesTitle.text = countrys[indexPath.row].strLeague
         print(countrys[indexPath.row].idLeague)
         cell.leaguesImg.sd_setImage(with: URL(string: countrys[indexPath.row].strBadge ?? ""), placeholderImage: UIImage(named: "exo.png"))

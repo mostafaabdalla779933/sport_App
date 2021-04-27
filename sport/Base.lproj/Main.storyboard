@@ -109,6 +109,9 @@
                                                     <state key="normal" title="Youtube">
                                                         <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="btnYtube:" destination="VnP-y7-bLj" eventType="touchUpInside" id="vLk-pw-cHN"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="League title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeJ-yv-8TP">
                                                     <rect key="frame" x="37" y="286" width="215" height="21"/>
@@ -127,7 +130,6 @@
                                         <connections>
                                             <outlet property="leaguesImg" destination="j45-Hx-dOa" id="3jm-cG-2cl"/>
                                             <outlet property="leaguesTitle" destination="MeJ-yv-8TP" id="kmZ-dG-Qp1"/>
-                                            <outlet property="leaguesYtubeBtn" destination="mQ4-w8-SQN" id="qLx-Oh-e3g"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -341,7 +343,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="coming matches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRI-gq-ffF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  coming matches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRI-gq-ffF">
                                 <rect key="frame" x="0.0" y="88" width="414" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Bda-e3-m5q"/>
@@ -350,7 +352,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="last Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msJ-lO-HDt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  last Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msJ-lO-HDt">
                                 <rect key="frame" x="0.0" y="278" width="414" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dew-6D-bkf"/>
@@ -359,7 +361,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8q-IY-FeU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Teams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8q-IY-FeU">
                                 <rect key="frame" x="0.0" y="518" width="414" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="i7i-lM-AbH"/>
