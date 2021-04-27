@@ -76,16 +76,31 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
               print(indexPath.row)
              
-             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesDetial") as! LeaguesDetialsVC
-             
-             vc.modalPresentationStyle = .fullScreen
-             vc.sport=fav[indexPath.row].strSport
-             vc.country = fav[indexPath.row].country
-             vc.badge=fav[indexPath.row].strBadge
-             vc.youtube=fav[indexPath.row].strYoutube
-             vc.league=fav[indexPath.row].strLeague
-             vc.id=fav[indexPath.row].idLeague
-             self.navigationController?.pushViewController(vc, animated: true)
+        if NetworkMonitor.shared.isConnected{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesDetial") as! LeaguesDetialsVC
+                        
+                        vc.modalPresentationStyle = .fullScreen
+                        vc.sport=fav[indexPath.row].strSport
+                        vc.country = fav[indexPath.row].country
+                        vc.badge=fav[indexPath.row].strBadge
+                        vc.youtube=fav[indexPath.row].strYoutube
+                        vc.league=fav[indexPath.row].strLeague
+                        vc.id=fav[indexPath.row].idLeague
+                        self.navigationController?.pushViewController(vc, animated: true)
+            
+            
+        }else{
+            
+            let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        
+        
+        
+            
       }
 
 }

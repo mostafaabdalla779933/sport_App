@@ -37,7 +37,7 @@ class NetworkManager {
     
     
     
-    func loadSports(com :@escaping ([Sports]) -> Void) {
+    func loadSports(com :@escaping ([Sports],String?) -> Void) {
             let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/all_sports.php")
                   let request = URLRequest(url: url!)
                   let session = URLSession(configuration: .default)
@@ -45,18 +45,22 @@ class NetworkManager {
         let _: Void = session.dataTask(with: request) { (data, response, error) in
     do{
        
-        let ob = try JSONDecoder().decode(SportsArr.self, from: data!)
+        let ob = try JSONDecoder().decode(SportsArr.self, from: data ?? Data())
         
         DispatchQueue.main.async {
          
             
-            com(ob.sports!)
+            com(ob.sports!,nil)
             
         }
 
       
                       }catch{
+                        
+                         DispatchQueue.main.async {
+                        com([],"error")
                           print("error")
+                        }
                       }
                   }.resume()
                   
@@ -74,13 +78,13 @@ func loadLeagues(sport : String ,com :@escaping ([Countrys]) -> Void) {
                   
         let _: Void = session.dataTask(with: request) { (data, response, error) in
     do{
-        let ob = try JSONDecoder().decode(CountrysArr.self, from: data!)
+        let ob = try JSONDecoder().decode(CountrysArr.self, from: data ?? Data() )
         DispatchQueue.main.async {
             
             com(ob.countrys!)
         }
         }
-    catch{  print(error.localizedDescription)  }
+    catch{  print("")  }
         }.resume()
         
         
@@ -89,8 +93,8 @@ func loadLeagues(sport : String ,com :@escaping ([Countrys]) -> Void) {
     //*****************Leagues Detials*********************//
     func downTeams(country:String,sport:String,com :@escaping ([Teams]) -> Void){
          
-         let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=\(sport)&c=\(country)")
-                        let request = URLRequest(url: url!)
+let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=\(sport ?? "")&c=\(country ?? "")") ?? URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=Soccer&c=England")
+        let request = URLRequest(url: url!)
                         let session = URLSession(configuration: .default)
                         
               let _: Void = session.dataTask(with: request) { (data, response, error) in

@@ -11,7 +11,7 @@ class SportPresenter {
     
     let network=NetworkManager()
 
-    func loadSports(com : @escaping (([Sports])-> Void)){
+    func loadSports(com : @escaping (([Sports],String?)-> Void)){
         network.loadSports(com : com)
     }
 }

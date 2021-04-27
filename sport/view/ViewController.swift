@@ -24,10 +24,17 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
        self.collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
     
-        presenter.loadSports{ (sportsArr) in
+        presenter.loadSports{ (sportsArr,error) in
             
+            if error == nil{
             self.sports=sportsArr
             self.collection.reloadData()
+            }else{
+                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+            }
             
         }
  
