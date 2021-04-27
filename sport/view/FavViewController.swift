@@ -30,9 +30,14 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        var data=core.get()
+        let data=core.get()
         fav = data
         table.reloadData()
+        if  NetworkMonitor.shared.isConnected{
+            print("Connected")
+        }else {
+            print("Disconnected")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
