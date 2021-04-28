@@ -25,4 +25,16 @@ let  core = CoreDat()
     network.downUpComing(id: id, com: com)
  }
     
+    
+    func addFav(fav:Favourit) {
+        core.add(country: fav)
+  
+    }
+    
+    
+    func isFavAdded(id :String)-> Bool{
+        
+        return core.getAdd().contains(id)
+        
+    }
 }

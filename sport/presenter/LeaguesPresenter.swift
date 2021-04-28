@@ -10,9 +10,12 @@ import Foundation
 class LeaguesPresenter {
     
     var network=NetworkManager()
-
+ 
+   
     func loadLeagues(sport : String,com :@escaping ([Countrys]) -> Void){
         network.loadLeagues(sport: sport, com: com)
     }
+
+    
 }
         

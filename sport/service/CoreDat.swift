@@ -71,4 +71,31 @@ func get()-> [Favourit]{
     return arr
 }
     
+    
+    func getAdd()-> [String]{
+       var arr:[String]=[]
+       let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+
+       let managedContext = appDelegate.persistentContainer.viewContext
+                   
+              let fetchReq=NSFetchRequest<NSManagedObject>(entityName: "Fav")
+
+
+              do{
+                       
+                var favs = try managedContext.fetch(fetchReq)
+                if favs != nil {
+                        
+                   for i in favs {
+                    arr.append(i.value(forKey: "idLeague") as! String)
+                      
+                    }
+                   }
+                }catch let error as NSError{
+                       print(error)
+               }
+        return arr
+    }
+    
 }

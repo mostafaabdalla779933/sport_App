@@ -39,6 +39,7 @@
 		7F98A9F3262C6F460000FF00 /* ResultsArr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98A9F2262C6F460000FF00 /* ResultsArr.swift */; };
 		7F98A9F5262C6F7D0000FF00 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98A9F4262C6F7D0000FF00 /* Results.swift */; };
 		7F98A9F7262C724C0000FF00 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98A9F6262C724C0000FF00 /* FavViewController.swift */; };
+		7FB3E28D26399F1700800F4B /* FavPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3E28C26399F1700800F4B /* FavPresenter.swift */; };
 		7FBFE4A4262CDA78009825A3 /* SportPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFE4A3262CDA78009825A3 /* SportPresenter.swift */; };
 		7FBFE4A8262CF085009825A3 /* countrys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFE4A7262CF085009825A3 /* countrys.swift */; };
 		7FBFE4AA262CF0DF009825A3 /* CountrysArr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFE4A9262CF0DF009825A3 /* CountrysArr.swift */; };
@@ -108,6 +109,7 @@
 		7F98A9F2262C6F460000FF00 /* ResultsArr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsArr.swift; sourceTree = "<group>"; };
 		7F98A9F4262C6F7D0000FF00 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		7F98A9F6262C724C0000FF00 /* FavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavViewController.swift; sourceTree = "<group>"; };
+		7FB3E28C26399F1700800F4B /* FavPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavPresenter.swift; sourceTree = "<group>"; };
 		7FBFE4A3262CDA78009825A3 /* SportPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPresenter.swift; sourceTree = "<group>"; };
 		7FBFE4A7262CF085009825A3 /* countrys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countrys.swift; sourceTree = "<group>"; };
 		7FBFE4A9262CF0DF009825A3 /* CountrysArr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrysArr.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				7FBFE4B3262D8867009825A3 /* DetialsPresenter.swift */,
 				7FBFE4B9262DD6F0009825A3 /* TeamDetilaPresenter.swift */,
 				03B09FC8262E904300612B26 /* LeaguesPresenter.swift */,
+				7FB3E28C26399F1700800F4B /* FavPresenter.swift */,
 			);
 			path = presenter;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				7FBFE4BA262DD6F0009825A3 /* TeamDetilaPresenter.swift in Sources */,
 				7F98A9ED262C6D5A0000FF00 /* TeamsArr.swift in Sources */,
 				7F420FCE262F6D1000B3E4D8 /* SportsProtocol.swift in Sources */,
+				7FB3E28D26399F1700800F4B /* FavPresenter.swift in Sources */,
 				7FBFE4AC262D0F61009825A3 /* LeaguesDetialsVC.swift in Sources */,
 				7FBFE4B2262D159C009825A3 /* EventCell.swift in Sources */,
 				7FBFE4BE262DD798009825A3 /* TeamDetialProtocol.swift in Sources */,

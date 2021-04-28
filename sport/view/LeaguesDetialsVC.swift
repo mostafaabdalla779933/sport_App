@@ -28,7 +28,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     var youtube:String!
     var league:String!
     var id :String!
-    var core:CoreDat!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,6 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         CTeams.dataSource=self
         CEvent.delegate=self
         CEvent.dataSource=self
-        core = CoreDat()
         prsenter.downResult(id: id) { (results) in
             self.reaultsArr=results
             self.CResults.reloadData()
@@ -59,7 +58,16 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     @IBAction func addFav(_ sender: Any) {
         
        let f=Favourit(idLeague: id, strBadge: badge, strSport: sport, strLeague: league, strYoutube: youtube,country: country)
-        core.add(country: f)
+        
+        if prsenter.isFavAdded(id: f.idLeague) {
+            let alert = UIAlertController(title: "", message: "already add", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        }else{
+            
+            prsenter.addFav(fav: f)
+        }     
     }
     
     /*
@@ -169,7 +177,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         
         
         if collectionView == self.CEvent {
-            return CGSize(width:  UIScreen.main.bounds.width - 50, height: self.CEvent.bounds.height - 5)
+            return CGSize(width:  UIScreen.main.bounds.width - 5, height: self.CEvent.bounds.height - 5)
         }else if collectionView == self.CTeams {
             return CGSize(width:  (UIScreen.main.bounds.width / 2) - 5, height: self.CTeams.bounds.height - 5)
             

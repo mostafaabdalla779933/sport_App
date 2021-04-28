@@ -12,26 +12,22 @@ import SDWebImage
 class FavViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
     
     var fav:[Favourit] = []
+    let presenter = FavPresenter()
     
     @IBOutlet weak var table: UITableView!
     
-    var core=CoreDat()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        
-        
         table.delegate = self
         table.dataSource = self
-        
-
     }
     
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let data=core.get()
-        fav = data
+       
+        fav = presenter.loadFav()
         table.reloadData()
         if  NetworkMonitor.shared.isConnected{
             print("Connected")
@@ -95,12 +91,7 @@ class FavViewController: UIViewController , UITableViewDataSource, UITableViewDe
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
-        }
-        
-        
-        
-        
-            
+        }      
       }
 
 }

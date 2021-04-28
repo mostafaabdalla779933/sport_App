@@ -12,6 +12,36 @@ import Foundation
 class NetworkManager {
     
     
+    
+    
+    //**********test generic *************//
+    
+  /*  func getResponse< T : Codable >(com :@escaping (T,String?) -> Void){
+        
+           let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/all_sports.php")
+                      let request = URLRequest(url: url!)
+                      let session = URLSession(configuration: .default)
+                      
+            let _: Void = session.dataTask(with: request) { (data, response, error) in
+        do{
+           
+            let ob = try JSONDecoder().decode(T.self, from: data ?? Data())
+            
+             DispatchQueue.main.async {
+                com(ob,nil)
+             }
+            }catch{
+                            
+                     DispatchQueue.main.async {
+                         
+                        com(, "error")
+                              print("error")
+                     }
+                   }
+             }.resume()
+    }*/
+    
+    
     func downTeam(id:String,com : @escaping (Teams) -> Void ){
             
             let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=\(id)")
@@ -29,7 +59,7 @@ class NetworkManager {
                                }catch{
                                    print("error")
                                }
-                           }.resume()
+               }.resume()
        
         }
     
@@ -93,7 +123,7 @@ func loadLeagues(sport : String ,com :@escaping ([Countrys]) -> Void) {
     //*****************Leagues Detials*********************//
     func downTeams(country:String,sport:String,com :@escaping ([Teams]) -> Void){
          
-let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=\(sport ?? "")&c=\(country ?? "")") ?? URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=Soccer&c=England")
+let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=\(sport.replacingOccurrences(of: " ", with: "_") ?? "")&c=\(country.replacingOccurrences(of: " ", with: "_") ?? "")") ?? URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=Soccer&c=England")
         let request = URLRequest(url: url!)
                         let session = URLSession(configuration: .default)
                         

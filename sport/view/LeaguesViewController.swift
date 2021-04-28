@@ -58,6 +58,8 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         
         vc.modalPresentationStyle = .fullScreen
         vc.sport=countrys[indexPath.row].strSport
+        print(countrys[indexPath.row].strSport)
+        print(countrys[indexPath.row].strCountry)
         vc.country=countrys[indexPath.row].strCountry
         vc.badge=countrys[indexPath.row].strBadge
         vc.youtube=countrys[indexPath.row].strYoutube
@@ -94,7 +96,7 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.strYoutube = countrys[indexPath.row].strYoutube
         cell.leaguesTitle.text = countrys[indexPath.row].strLeague
-        print(countrys[indexPath.row].idLeague as Any)
+        
         cell.leaguesImg.sd_setImage(with: URL(string: countrys[indexPath.row].strBadge ?? ""), placeholderImage: UIImage(named: "exo.png"))
 
         return cell
