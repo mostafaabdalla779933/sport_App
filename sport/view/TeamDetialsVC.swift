@@ -28,12 +28,24 @@ class TeamDetialsVC: UIViewController {
         super.viewDidLoad()
     
         
-        presenter.downTeam(id: idStr) { (team) in
-            self.name.text = team.strTeam
-            self.sImg.sd_setImage(with: URL(string: (team.strStadiumThumb) ?? ""), placeholderImage: UIImage(named: "a.png"))
-            self.logo.sd_setImage(with: URL(string: (team.strTeamBadge) ?? ""), placeholderImage: UIImage(named: "a.png"))
-             self.sName.text = team.strStadium
+        presenter.downTeam(id: idStr) { (team,error) in
+        
+            if error == nil{
+            self.name.text = team?.strTeam
+            self.sImg.sd_setImage(with: URL(string: (team?.strStadiumThumb) ?? ""), placeholderImage: UIImage(named: "a.png"))
+            self.logo.sd_setImage(with: URL(string: (team?.strTeamBadge) ?? ""), placeholderImage: UIImage(named: "a.png"))
+            self.sName.text = team?.strStadium}
+            else{
+            let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                                              alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                                              self.present(alert, animated: true, completion: nil)
+                           }
         }
+        /* }else{
+                       let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                                      alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                                      self.present(alert, animated: true, completion: nil)
+                   }*/
 
         sImg.contentMode = .scaleAspectFill
         sImg.layer.borderWidth = 1.0

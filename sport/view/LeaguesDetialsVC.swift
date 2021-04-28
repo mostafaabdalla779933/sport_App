@@ -41,16 +41,34 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         CEvent.dataSource=self
         prsenter.downResult(id: id) { (results) in
             self.reaultsArr=results
-            self.CResults.reloadData()
+                self.CResults.reloadData()}else{
+                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                               alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                               self.present(alert, animated: true, completion: nil)
+            }
         }
-        prsenter.downUpComing (id :id){ (events) in
+        prsenter.downUpComing (id :id){ (events, error) in
+           
+            if error == nil{
             self.upComeArr=events
             self.CEvent.reloadData()
+                
+            }else{
+                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                               alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                               self.present(alert, animated: true, completion: nil)
+            }
         }
        
-        prsenter.downTeams(country: country, sport: sport) { (teams) in
+        prsenter.downTeams(country: country, sport: sport) { (teams, error) in
+            if error == nil {
             self.teamsArr=teams
-            self.CTeams.reloadData()
+                self.CTeams.reloadData()}
+            else{
+                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                               alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                               self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 
@@ -146,8 +164,6 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             cell.time.text=reaultsArr[indexPath.row].strTime
             cell.contentView.layer.cornerRadius = 45
             cell.contentView.layer.borderWidth = 5.0
-
-        
         
        /* #3b5998
         #8b9dc3

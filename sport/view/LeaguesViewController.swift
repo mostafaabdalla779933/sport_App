@@ -23,12 +23,32 @@ class LeaguesViewController: UIViewController {
         leaguesview.delegate = self
         leaguesview.dataSource = self
         
-    
+    /* presenter.loadSports{ (sportsArr,error) in
+               
+               if error == nil{
+               self.sports=sportsArr
+               self.collection.reloadData()
+               }else{
+                   let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                   alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                   self.present(alert, animated: true, completion: nil)
+                   
+               }
+               
+           }**/
         
         
-        presenter.loadLeagues(sport: sport) { (CountrysArr) in
-             self.countrys = CountrysArr
-             self.leaguesview.reloadData()
+        presenter.loadLeagues(sport: sport) { (CountrysArr, error) in
+            
+            if error == nil {
+                self.countrys = CountrysArr
+                self.leaguesview.reloadData()
+            }
+            else{
+                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
