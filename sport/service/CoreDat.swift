@@ -40,6 +40,41 @@ class CoreDat{
        }
     
     
+    func deleteRecords() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Fav")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print ("There was an error")
+        }
+
+    }
+    
+    
+    
+    func delete(id :String){
+        var arr: [Favourit] = []
+        get().forEach { (fav) in
+            if fav.idLeague == id {
+            }else{
+                arr.append(fav)
+            }
+        }
+        deleteRecords()
+        
+        arr.forEach { (fav) in
+            add(country: fav)
+        }
+    }
+     
+  
+    
 func get()-> [Favourit]{
    var arr:[Favourit]=[]
    let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate

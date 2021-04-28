@@ -30,7 +30,7 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
             self.sports=sportsArr
             self.collection.reloadData()
             }else{
-                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 
@@ -84,7 +84,7 @@ class ViewController: UIViewController ,UICollectionViewDelegateFlowLayout, UICo
     @IBOutlet weak var collection: UICollectionView!
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //return CGSize(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.25)
-        return CGSize(width: UIScreen.main.bounds.width / 2 - 10, height: 175)
+        return CGSize(width: UIScreen.main.bounds.width / 2 - 3, height: 175)
     }
 }
 

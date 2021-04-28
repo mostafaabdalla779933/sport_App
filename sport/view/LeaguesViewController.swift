@@ -85,7 +85,9 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         vc.youtube=countrys[indexPath.row].strYoutube
         vc.league=countrys[indexPath.row].strLeague
         vc.id=countrys[indexPath.row].idLeague
-        self.navigationController?.pushViewController(vc, animated: true)
+        //self.navigationController?.pushViewController(vc, animated: true)
+        
+        self.present(vc, animated: true)
 
         
     }
@@ -100,10 +102,20 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         return countrys.count
     }
     
+   /* override func viewDidLayoutSubviews() {
+         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+    }*/
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = leaguesview.dequeueReusableCell(withIdentifier: "customCell") as! LeaguesTableViewCell
 
-       
+       // cell.contentView.frame = cell.contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
         cell.leaguesImg.layer.borderWidth = 1.0
         cell.leaguesImg.layer.masksToBounds = false
         cell.leaguesImg.layer.borderColor = UIColor.white.cgColor
@@ -117,12 +129,49 @@ extension LeaguesViewController:UITableViewDelegate,UITableViewDataSource{
         cell.strYoutube = countrys[indexPath.row].strYoutube
         cell.leaguesTitle.text = countrys[indexPath.row].strLeague
         
-        cell.leaguesImg.sd_setImage(with: URL(string: countrys[indexPath.row].strBadge ?? ""), placeholderImage: UIImage(named: "exo.png"))
+        cell.leaguesImg.sd_setImage(with: URL(string: countrys[indexPath.row].strBadge ?? ""), placeholderImage: UIImage(named: "a.png"))
+        
+        cell.contentView.layer.cornerRadius = 45
+        cell.contentView.layer.borderWidth = 5.0
+        cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        //cell?.backgroundColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        cell.contentView.layer.masksToBounds = true
+
+        cell.layer.shadowColor = hexStringToUIColor(hex: "#3b5998").cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds,
+                          cornerRadius:cell.contentView.layer.cornerRadius).cgPath
 
         return cell
     }
     
     
+
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
 
     
 }

@@ -16,6 +16,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     
     @IBOutlet weak var CTeams: UICollectionView!
     
+    @IBOutlet weak var leagName: UIBarButtonItem!
     
     
     var teamsArr:[Teams]=[]
@@ -30,6 +31,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
     var id :String!
    
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,11 +41,17 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
         CTeams.dataSource=self
         CEvent.delegate=self
         CEvent.dataSource=self
-        prsenter.downResult(id: id) { (results) in
-            self.reaultsArr=results
-                self.CResults.reloadData()}else{
-                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
-                               alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+        leagName.title=country
+       
+        prsenter.downResult(id: id) { (results,error) in
+            if error == nil{
+                
+                self.reaultsArr=results
+                self.CResults.reloadData()
+                
+            }else{
+                let alert = UIAlertController(title: "", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                                self.present(alert, animated: true, completion: nil)
             }
         }
@@ -54,7 +62,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             self.CEvent.reloadData()
                 
             }else{
-                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
                                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                                self.present(alert, animated: true, completion: nil)
             }
@@ -65,20 +73,28 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             self.teamsArr=teams
                 self.CTeams.reloadData()}
             else{
-                let alert = UIAlertController(title: "warring", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "", message: "no internet connection", preferredStyle: UIAlertController.Style.alert)
                                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                                self.present(alert, animated: true, completion: nil)
             }
         }
     }
 
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        print("back")
+        
+    }
+    
+    
+    
     
     @IBAction func addFav(_ sender: Any) {
         
        let f=Favourit(idLeague: id, strBadge: badge, strSport: sport, strLeague: league, strYoutube: youtube,country: country)
         
         if prsenter.isFavAdded(id: f.idLeague) {
-            let alert = UIAlertController(title: "", message: "already add", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "", message: "already added", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
@@ -164,17 +180,11 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             cell.time.text=reaultsArr[indexPath.row].strTime
             cell.contentView.layer.cornerRadius = 45
             cell.contentView.layer.borderWidth = 5.0
-        
-       /* #3b5998
-        #8b9dc3
-        #dfe3ee
-        #f7f7f7
-        #ffffff*/
-        cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#dfe3ee").cgColor
+            cell.contentView.layer.borderColor = hexStringToUIColor(hex: "#3b5998").cgColor
             
         cell.contentView.layer.masksToBounds = true
 
-        cell.layer.shadowColor = hexStringToUIColor(hex: "#dfe3ee").cgColor
+        cell.layer.shadowColor = hexStringToUIColor(hex: "#3b5998").cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         cell.layer.shadowRadius = 2.0
         cell.layer.shadowOpacity = 1.0
@@ -199,7 +209,7 @@ class LeaguesDetialsVC: UIViewController,UICollectionViewDelegateFlowLayout, UIC
             
         }else{
             
-          return CGSize(width:  UIScreen.main.bounds.width - 50, height: self.CResults.bounds.height - 5)
+          return CGSize(width:  UIScreen.main.bounds.width - 10, height: self.CResults.bounds.height - 5)
             
             
         }

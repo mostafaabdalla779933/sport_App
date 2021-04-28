@@ -16,7 +16,7 @@ class NetworkManager {
     
     //**********test generic *************//
     
-  /*  func getResponse< T : Codable >(com :@escaping (T,String?) -> Void){
+   func getResponse< T : Codable >(com :@escaping (T?,String?) -> Void){
         
            let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/all_sports.php")
                       let request = URLRequest(url: url!)
@@ -34,15 +34,15 @@ class NetworkManager {
                             
                      DispatchQueue.main.async {
                          
-                        com(, "error")
+                        com(nil, "error")
                               print("error")
                      }
                    }
              }.resume()
-    }*/
+    }
     
     
-    func downTeam(id:String,com : @escaping (Teams) -> Void ){
+    func downTeam(id:String,com : @escaping (Teams?,String?) -> Void ){
             
             let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=\(id)")
                            let request = URLRequest(url: url!)
@@ -58,7 +58,7 @@ class NetworkManager {
                  }
                 
              }catch{
-                com(nil,"Error")
+                 com(nil,"Error")
                  print("error")
 
                 }}.resume()
@@ -170,7 +170,7 @@ let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams
 
     func downUpComing(id:String,com :@escaping ([Events],String?) -> Void){
             
-            let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/eventsround.php?id=\(id)&r=33&s=2020-2021")
+            let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/eventsround.php?id=\(id)&r=1&s=2020-2021")
                            let request = URLRequest(url: url!)
                            let session = URLSession(configuration: .default)
                            
