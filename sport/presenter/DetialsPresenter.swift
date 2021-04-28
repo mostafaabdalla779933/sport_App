@@ -12,16 +12,16 @@ class DetialsPresenter{
 
 let network = NetworkManager()
 let  core = CoreDat()
- func downTeams(country:String,sport:String,com :@escaping ([Teams]) -> Void){
+ func downTeams(country:String,sport:String,com :@escaping ([Teams], String?) -> Void){
     network.downTeams(country: country, sport: sport, com: com)
  }
 
- func downResult(id:String,com :@escaping ([Events]) -> Void){
+ func downResult(id:String,com :@escaping ([Events],String?) -> Void){
     network.downResult(id: id, com: com)
 
  }
     
- func downUpComing(id:String,com :@escaping ([Events]) -> Void){
+ func downUpComing(id:String,com :@escaping ([Events],String?) -> Void){
     network.downUpComing(id: id, com: com)
  }
     

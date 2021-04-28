@@ -12,7 +12,7 @@ import Foundation
 class NetworkManager {
     
     
-    func downTeam(id:String,com : @escaping (Teams) -> Void ){
+    func downTeam(id:String,com : @escaping (Teams?, String?) -> Void ){
             
             let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=\(id)")
                            let request = URLRequest(url: url!)
@@ -21,20 +21,18 @@ class NetworkManager {
                  let _: Void = session.dataTask(with: request) { (data, response, error) in
              do{
                 
-                 let ob = try JSONDecoder().decode(TeamsArr.self, from: data!)
+                 let ob = try JSONDecoder().decode(TeamsArr.self, from: data ?? Data())
                  
                  DispatchQueue.main.async {
-                   com((ob.teams?[0])!)
+                   com((ob.teams?[0])!,nil)
                  }
-                               }catch{
-                                   print("error")
-                               }
-                           }.resume()
-       
+                
+             }catch{
+                com(nil,"Error")
+                 print("error")
+
+                }}.resume()
         }
-    
-    
-    
     
     
     func loadSports(com :@escaping ([Sports],String?) -> Void) {
@@ -53,13 +51,11 @@ class NetworkManager {
             com(ob.sports!,nil)
             
         }
-
-      
-                      }catch{
-                        
-                         DispatchQueue.main.async {
+        
+    }catch{
+        DispatchQueue.main.async {
                         com([],"error")
-                          print("error")
+                        print("error")
                         }
                       }
                   }.resume()
@@ -68,7 +64,7 @@ class NetworkManager {
     
     
     
-func loadLeagues(sport : String ,com :@escaping ([Countrys]) -> Void) {
+func loadLeagues(sport : String ,com :@escaping ([Countrys],String?) -> Void) {
         
        let str = sport.replacingOccurrences(of: " ", with: "_")
 
@@ -81,17 +77,21 @@ func loadLeagues(sport : String ,com :@escaping ([Countrys]) -> Void) {
         let ob = try JSONDecoder().decode(CountrysArr.self, from: data ?? Data() )
         DispatchQueue.main.async {
             
-            com(ob.countrys!)
+            com(ob.countrys!, nil)
         }
         }
-    catch{  print("")  }
-        }.resume()
+        /**/
+    catch{
+        DispatchQueue.main.async {
+        com([],"error")
+        print("")  }
+            }}.resume()
         
         
     }
     
     //*****************Leagues Detials*********************//
-    func downTeams(country:String,sport:String,com :@escaping ([Teams]) -> Void){
+    func downTeams(country:String,sport:String,com :@escaping ([Teams],String?) -> Void){
          
 let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=\(sport ?? "")&c=\(country ?? "")") ?? URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=Soccer&c=England")
         let request = URLRequest(url: url!)
@@ -100,20 +100,22 @@ let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams
               let _: Void = session.dataTask(with: request) { (data, response, error) in
           do{
              
-              let ob = try JSONDecoder().decode(TeamsArr.self, from: data!)
+              let ob = try JSONDecoder().decode(TeamsArr.self, from: data ?? Data())
               
               DispatchQueue.main.async {
-                com(ob.teams ?? [])
+                com(ob.teams ?? [],nil)
               }
          }catch{
-            print("error")
+             DispatchQueue.main.async {
+                   com([],"error")
+                   print("")  }
          }
      }.resume()
      }
      
      
      
-    func downResult(id :String,com :@escaping ([Events]) -> Void){
+    func downResult(id :String,com :@escaping ([Events], String?) -> Void){
          
          let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=\(id)")
                         let request = URLRequest(url: url!)
@@ -122,19 +124,21 @@ let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams
               let _: Void = session.dataTask(with: request) { (data, response, error) in
           do{
              
-              let ob = try JSONDecoder().decode(EventsArr.self, from: data!)
+              let ob = try JSONDecoder().decode(EventsArr.self, from: data ?? Data())
               
               DispatchQueue.main.async {
-                com(ob.events ?? [])
+                com(ob.events ?? [],nil)
               }
          }catch{
-           print("error")
+           DispatchQueue.main.async {
+                  com([],"error")
+                  print("")  }
          }
         }.resume()
      }
      
 
-    func downUpComing(id:String,com :@escaping ([Events]) -> Void){
+    func downUpComing(id:String,com :@escaping ([Events],String?) -> Void){
             
             let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/eventsround.php?id=\(id)&r=33&s=2020-2021")
                            let request = URLRequest(url: url!)
@@ -143,13 +147,15 @@ let url = URL(string:"https://www.thesportsdb.com/api/v1/json/1/search_all_teams
                  let _: Void = session.dataTask(with: request) { (data, response, error) in
              do{
                 
-                 let ob = try JSONDecoder().decode(EventsArr.self, from: data!)
+                 let ob = try JSONDecoder().decode(EventsArr.self, from: data ?? Data())
                  
                  DispatchQueue.main.async {
-                    com(ob.events ?? [])
+                    com(ob.events ?? [],nil)
                  }
                                }catch{
-                                   print("error")
+                                  DispatchQueue.main.async {
+                                          com([],"error")
+                                          print("")  }
                                }
                            }.resume()
        

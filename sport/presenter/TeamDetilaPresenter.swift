@@ -13,10 +13,7 @@ class TeamDetilaPresenter {
 
     var network=NetworkManager()
     
-    
-    
-    
-    func downTeam(id:String,com : @escaping (Teams) -> Void ){
+    func downTeam(id:String,com : @escaping (Teams?, String?) -> Void ){
         network.downTeam(id: id, com: com)
     }
 }
